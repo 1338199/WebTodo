@@ -1,0 +1,250 @@
+body{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background: cornflowerblue;
+}
+.header{
+
+    color: white;
+    text-align: center;
+    font-family: cursive;
+}
+#title{
+    font-weight: bold;
+}
+#avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+.welcome{
+    background: orange;
+    text-decoration:none;
+    color:#f2f2f2;
+    padding: 10px 30px 10px 30px;
+    font-size:20px;
+    font-family: monospace;
+    font-weight:bold;
+    border-radius:10px;
+}
+
+#todo-count{
+    /*float: left;*/
+    display: inline-block;
+    margin-right: 40px;
+    margin-top: 25px;
+    font-size: 20px;
+    font-family: "Times New Roman",Georgia,serif;
+}
+#time{
+    /*float: right;*/
+    display: inline-block;
+    font-size: 20px;
+    margin-top: 25px;
+    font-family: "Times New Roman",Georgia,serif;
+}
+.main{
+    margin: auto;
+    background: white;
+    border-top-left-radius: 45px;
+    height: 515px;
+}
+
+.input-todo,
+.edit {
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-size: 18px;
+}
+
+.input-todo {
+    margin-top: 25px;
+    padding: 10px 16px 10px 16px;
+    border-radius: 10px;
+    border-color: dodgerblue;
+    background: rgba(0, 0, 0, 0.003);
+    text-align: left;
+    width: 220px;
+}
+.input-todo::placeholder {
+    font-style: italic;
+    font-weight: 100;
+    color: lightgray;
+    font-size: 18px;
+}
+
+.filters {
+    margin: 0 auto 15px auto;
+    list-style: none;
+    box-shadow: 0 -1px 0 cornflowerblue,
+    1px 1px 0 cornflowerblue,
+    -1px 0 0 cornflowerblue;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 0;
+}
+
+.filters li {
+    display: inline;
+    font-family: "Times New Roman",Georgia,serif;
+    color: cornflowerblue;
+    font-size: 16px;
+}
+.filters li #hiddenNum{
+    margin-left: 0;
+}
+
+.filters li a {
+    margin: 3px;
+    padding: 3px 7px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+
+.filters li a.selected,
+.filters li a:hover {
+    border-color: orange;
+}
+
+.filters li a.selected {
+    border-color: orange;
+}
+.footer{
+    margin-top: 10px;
+}
+#clear-completed{
+    background: cornflowerblue;
+    text-decoration:none;
+    color:#f2f2f2;
+    cursor: pointer;
+    padding: 3px 8px 3px 8px;
+    font-size:20px;
+    font-family: monospace;
+    font-weight:bold;
+    border-radius:10px;
+}
+
+span {
+    position: relative;
+}
+.Checkbox {
+    position: absolute;
+    visibility: hidden;
+}
+.Checkbox+label {
+    position:absolute;
+    width: 16px;
+    height: 16px;
+    border: 1px solid orange;
+    border-radius: 50%;
+    background-color:orange;
+}
+.Checkbox:checked+label:after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top:2px;
+    width: 9px;
+    height: 4px;
+    border: 2px solid blue;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    transform: rotate(-45deg);
+    -ms-transform: rotate(-60deg);
+    -moz-transform: rotate(-60deg);
+    -webkit-transform: rotate(-60deg);
+}
+.toggole-all{
+    display: inline-block;
+    margin-right: 25px;
+    margin-bottom: 14px;
+}
+/*todolist*/
+#todo-list {
+    display: block;
+    width: 100%;
+    max-height: 20rem;
+    margin: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+
+.list {
+    width: 80%;
+    background: #FFF;
+    font-size: 1.2rem;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+.todo-list .todo-item{
+    margin:5px auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    box-shadow: 0 -1px 0 cornflowerblue,
+    1px 1px 0 cornflowerblue,
+    -1px 0 0 cornflowerblue;
+    font-family: "Hannotate SC", serif;
+    font-size: 1.2em;
+}
+.point{
+    width: 25px;
+    height: 25px;
+    float: left;
+    cursor: pointer;
+}
+#addIcon{
+    width: 20px;
+    height: 20px;
+}
+#add{
+    cursor: pointer;
+}
+.date{
+    font-size: 12px;
+    float:right;
+    margin-top: 10px;
+    margin-right: 5px;
+    color: white;
+    background: cornflowerblue;
+    border-radius: 10px;
+    padding: 2px 5px 2px 5px;
+}
+.trash{
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    margin-top: 3px;
+}
+.completed{
+    color: #d9d9d9;
+    text-decoration: line-through;
+}
+.completed img{
+    opacity: 50%;
+}
+.completed .date{
+    opacity: 50%;
+}
+.editing {
+    display: none;
+}
+.edit{
+    font-family: "Hannotate SC",serif;
+    border: 1px solid cornflowerblue;
+    padding: 7px 0;
+    border-radius: 3px;
+    font-size: 20px;
+    width: 50%;
+}
+.not-show{
+    display: none;
+}

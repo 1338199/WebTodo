@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1" name="viewport"/>
+    <link href="ToDoMVC.css" type="text/css" rel="stylesheet"/>
+    <script src="JS/ToDoMVC.js" ></script>
+    <title>ToDoMVC</title>
+</head>
+<body>
+<div class="todomvc">
+    <header class="header">
+        <br/>
+        <img id="avatar" src="img/avatar.jpeg"/>
+        <h1 id="title">Joshua's ToDo</h1>
+        <!-- Add New Item -->
+        <a class="welcome" href="index.html">Welcome</a><br/>
+        <h2 id="todo-count"></h2>
+        <h2 id="time"></h2>
+    </header>
+    <section class="main">
+        <span class="toggole-all">
+             <input type="checkbox" class="Checkbox" id="check1">
+             <label for="check1"></label>
+        </span>
+        <input class="input-todo" type="text" placeholder="What are you going to do?" autofocus>
+        <a id="add"><img id="addIcon" src="img/add.png"/></a>
+        <br/>
+
+
+        <div class="list">
+
+            <ul class="filters">
+                <li id="hiddenNum"></li>
+                <li><a class="selected" style="cursor:pointer;">All</a></li>
+                <li><a class="" style="cursor:pointer;">Active</a></li>
+                <li><a class="" style="cursor:pointer;">Completed</a></li>
+            </ul>
+            <!-- Show List -->
+            <div class="todo-list">
+            </div>
+        </div>
+        <footer class="footer">
+            <br/>
+            <a id="clear-completed">Clear completed</a>
+        </footer>
+
+    </section>
+</div>
+</body>
+</html>

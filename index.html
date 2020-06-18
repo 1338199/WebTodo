@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
     <meta content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1" name="viewport"/>
-    <link href="ToDoMVC.css" type="text/css" rel="stylesheet"/>
+    <link href="CSS/ToDoMVC.css" type="text/css" rel="stylesheet">
+    <link href="CSS/Calendar.css" type="text/css" rel="stylesheet">
     <script src="JS/ToDoMVC.js" ></script>
+<!--    <script src="JS/Calendar.js"></script>-->
     <title>ToDoMVC</title>
 </head>
 <body>
@@ -11,7 +13,7 @@
     <header class="header">
         <br/>
         <img id="avatar" src="img/avatar.jpeg"/>
-        <h1 id="title">Joshua's ToDo</h1>
+        <h1 id="pagetitle">Joshua's ToDo</h1>
         <!-- Add New Item -->
         <a class="welcome" href="index.html">Welcome</a><br/>
         <h2 id="todo-count"></h2>
@@ -41,8 +43,34 @@
         </div>
         <footer class="footer">
             <br/>
-            <a id="clear-completed">Clear completed</a>
+            <a id="clear-completed">Clear Completed</a>
+            <a id="sort">Sort Items By DDL</a>
         </footer>
+        <div id="data">
+            <p id="datecontrol">
+                <span id="prev">Last Month</span>
+                <span id="nian">2020</span>
+                <span id="next">Next Month</span>
+            </p>
+            <span id="yue">June</span>
+            <ul id="title">
+                <li>Sun.</li>
+                <li>Mon.</li>
+                <li>Tues.</li>
+                <li>Wed.</li>
+                <li>Thur.</li>
+                <li>Fri.</li>
+                <li>Sat.</li>
+            </ul>
+            <ul id="date">
+            </ul>
+        </div>
+        <div id="dateFilter">
+        </div>
+
+        <div id="endToday">
+
+        </div>
 
     </section>
 </div>

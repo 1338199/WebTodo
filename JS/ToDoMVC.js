@@ -12,19 +12,37 @@ var day = date.getDate();
 var leftNum = 0;
 var whichSelected;
 var hiddenNums;
+var calendarYear;
+var calendarMonth;
+
+
 window.onload = function init() {
+
+    //添加日历功能
+    addDate();
+    document.getElementById("next").onclick = function(){
+        date.setMonth(date.getMonth() + 1); //当点击下一个月时 对当前月进行加1;
+        addDate(); //重新执行渲染 获取去 改变后的 年月日 进行渲染;
+    };
+    document.getElementById("prev").onclick = function(){
+        date.setMonth(date.getMonth() - 1); //与下一月 同理
+        addDate();
+    };
+
     var time = $('#time');
     time.innerHTML = year+'.'+month+'.'+day;
 
     //点击添加按钮增加todo
     var add = $('#add'); // todo
+    var today = year+'.'+month+'.'+day;
     add.addEventListener('click', function(ev) {
+        var ddl = prompt("The item ends at(xxxx.x.x)",today);
         var message =$('.input-todo');
         if (message.value === '') {
             alert('message is empty');
             return;
         }
-        addTodo(message.value);
+        addTodo(message.value,ddl);
         message.value = '';
     });
 
@@ -61,23 +79,25 @@ window.onload = function init() {
     //添加过滤功能
     filtersClick();
 
+    //添加sort功能
+    sortInteract();
+
     //update
     update();
 };
 
-function addTodo(message) {
+function addTodo(message,ddl) {
     var todoList = $('.todo-list');
 
     var item = document.createElement('div');
     var id = 'item' + itemId++;
     var classname = 'todo-item';
 
-    var today = year+'.'+month+'.'+day;
     item.setAttribute('id', id);
     item.setAttribute('class', classname);
-    item.innerHTML = " <img src=\"img/point.jpeg\" id=\"point"+itemId+"\" class=\"point\"/>\n" +
+    item.innerHTML = " <img src=\"img/point.jpeg\" class=\"point\"/>\n" +
         "                    <span>"+message+"</span>\n" +
-        "                    <span class=\"date\">"+today+"</span>";
+        "                    <span class=\"date\">"+ddl+"</span>";
 
     //添加删除图标
     var leftslide = false;
@@ -122,20 +142,9 @@ function addTodo(message) {
         edit.focus();
     }, false);
 
-    // item.querySelector('.toggle').addEventListener('change', function() {
-    //     updateTodo(id, this.checked);
-    // });
-    //
-    // item.querySelector('.destroy').addEventListener('click', function() {
-    //     removeTodo(id);
-    // });
-
     todoList.insertBefore(item, todoList.firstChild);
 
-    //通过point添加toggle交互
-    var string = '#point'+itemId;
-    var point = $(string);
-    addToggle(point);
+    addToggle();
 
     //update
     update();
@@ -170,6 +179,12 @@ function update() {
 
     //显示当前被隐藏的item数目
     numberOfHidden();
+
+    //更新日历显示
+    addDate();
+
+    //更新今日提醒
+    itemToday();
 
 }
 
@@ -229,22 +244,25 @@ addDeleteIcon = function (leftslide,rightsilde,item) {
     });
 };
 
-addToggle = function (toggle) {
-    var toggleParent = toggle.parentNode;
-    toggle.addEventListener('click',function () {
-        if(toggleParent.classList.contains("completed")){
-            toggleParent.classList.remove("completed");
-            update();
-            if(leftNum>0){
-                var checkbox = $('#check1');
-                checkbox.checked = false;
+addToggle = function () {
+    var toggles = $All('.point');
+    Array.prototype.forEach.call(toggles,function (toggle) {
+        var toggleParent = toggle.parentNode;
+        toggle.addEventListener('click',function () {
+            if(toggleParent.classList.contains("completed")){
+                toggleParent.classList.remove("completed");
+                update();
+                if(leftNum>0){
+                    var checkbox = $('#check1');
+                    checkbox.checked = false;
+                }
             }
-        }
-        else {
-            toggleParent.classList.add("completed");
-            update();
-        }
-    })
+            else {
+                toggleParent.classList.add("completed");
+                update();
+            }
+        })
+    });
 };
 
 clearComplete = function () {
@@ -253,6 +271,9 @@ clearComplete = function () {
         var completes = $All('.completed');
         Array.prototype.forEach.call(completes,function (item){
             var parentComplete = item.parentNode;
+            if(item.nextSibling.nodeName==="SPAN"){
+                parentComplete.removeChild(item.nextSibling);
+            }
             parentComplete.removeChild(item);
         });
     })
@@ -275,6 +296,7 @@ filtersClick = function () {
 
 };
 
+//item和其后的deleteIcon(如果有)都要过滤
 filterItems = function () {
     if(whichSelected.firstChild.nodeValue === "Active"){
         var items1 = $All('.todo-item');
@@ -282,17 +304,29 @@ filterItems = function () {
             if(item.classList.contains('completed')
                 &&!item.classList.contains('not-show')){
                 item.classList.add('not-show');
+                item.style.display = "none";
+                if(item.nextSibling.nodeName === 'SPAN'){
+                    item.nextSibling.classList.add('not-show');
+                }
             }
             else if(!item.classList.contains('completed')
                 && item.classList.contains('not-show')){
                 item.classList.remove('not-show');
+                item.style.display = "inline-block";
+                if(item.nextSibling.nodeName === 'SPAN'){
+                    item.nextSibling.classList.remove('not-show');
+                }
             }
         })
     }else if(whichSelected.firstChild.nodeValue === "All"){
-        var items2 = $All('.completed');
+        var items2 = $All('.todo-item');
         Array.prototype.forEach.call(items2,function (item) {
             if(item.classList.contains('not-show')){
                 item.classList.remove('not-show');
+                item.style.display = "inline-block";
+                if(item.nextSibling.nodeName === 'SPAN'){
+                    item.nextSibling.classList.remove('not-show');
+                }
             }
         })
     }else{
@@ -301,9 +335,17 @@ filterItems = function () {
             if(!item.classList.contains('completed')
                 && !item.classList.contains('not-show')){
                 item.classList.add('not-show');
+                item.style.display = "none";
+                if(item.nextSibling.nodeName === 'SPAN'){
+                    item.nextSibling.classList.add('not-show');
+                }
             }
             else if(item.classList.contains('completed') && item.classList.contains('not-show')){
                 item.classList.remove('not-show');
+                item.style.display = "inline-block";
+                if(item.nextSibling.nodeName === 'SPAN'){
+                    item.nextSibling.classList.remove('not-show');
+                }
             }
         })
     }
@@ -320,3 +362,108 @@ numberOfHidden =function () {
     var hidden = $('#hiddenNum');
     hidden.innerHTML = "Hidden: "+hiddenNums;
 };
+
+addDate = function(){
+    document.getElementById('date').innerHTML = "";
+
+    var nian = date.getFullYear();//当前年份
+    var yue = date.getMonth(); //当前月
+    var arr=["January","February","March","April","May","June","July","August","September","October","November","December"];
+    document.getElementById('nian').innerText = nian;
+    calendarYear = nian;
+    document.getElementById('yue').innerText = arr[yue];
+    calendarMonth = yue;
+
+    var setDat = new Date(nian,yue + 1,1 - 1); //把时间设为下个月的1号 然后天数减去1 就可以得到 当前月的最后一天;
+    var setTian = setDat.getDate(); //获取 当前月最后一天
+    var setZhou = new Date(nian,yue,1).getDay(); //获取当前月第一天 是 周几
+
+    for(var i=0;i<setZhou ;i++){//渲染空白 与 星期 对应上
+        var li=document.createElement('li');
+        document.getElementById('date').appendChild(li);
+    }
+    var dateString;
+    for(var i=1;i<=setTian;i++){//利用获取到的当月最后一天 把 前边的 天数 都循环 出来
+        var li=document.createElement('li');
+        li.innerText = i;
+        var items = $All('.todo-item');
+        dateString = nian+'.'+(yue+1)+'.'+i;
+
+        Array.prototype.forEach.call(items,function (item) {
+            if(dateString === item.childNodes.item(5).innerHTML){
+                li.classList.add('hasTodo');
+            }
+        });
+        if(nian === year && yue === month-1 && i === day){
+            li.classList.add("active");
+        }else{
+            li.classList.add("hover");
+        }
+
+        document.getElementById('date').appendChild(li);
+    }
+    var lis = $All('#date li');
+    Array.prototype.forEach.call(lis,function (dateli) {
+        dateli.addEventListener('click',function (ev) {
+            var dateFilter = $('#dateFilter');
+            var string = calendarYear+'.'+(calendarMonth+1)+'.'+dateli.innerHTML;
+            dateFilter.innerHTML = "Todo items end at "+string + " <div id=\"selectedItem\">\n" +
+                "            </div>";
+            var seletedDates = $('#selectedItem');
+            Array.prototype.forEach.call(items,function (item) {
+                if(string === item.childNodes.item(5).innerHTML){
+                    seletedDates.innerHTML =seletedDates.innerHTML+item.childNodes.item(3).innerHTML+"<br/>";
+                }
+            });
+        });
+    })
+};
+compare = function (date1,date2) {
+    var dateArr1 = date1.split('.');
+    var dateArr2 = date2.split('.');
+    if(dateArr1[0] < dateArr2[0]){
+        return true;
+    }else if(dateArr1[0] === dateArr2[0] && dateArr1[1] < dateArr2[1]){
+        return true;
+    }else if(dateArr1[1] === dateArr2[1] && dateArr1[2] < dateArr2[2]){
+        return true;
+    }
+    else{
+        return false;
+    }
+};
+sortInteract = function () {
+    var sortClick = $('#sort');
+    sortClick.addEventListener('click',function (ev) {
+        var items = $All('.todo-item');
+        for(var i = 0;i <items.length-1;i++){
+            (function(item) {
+                for(var j = 1; j<items.length;j++){
+                    (function (item2) {
+                        if(!compare(item.childNodes.item(5).innerHTML,item2.childNodes.item(5).innerHTML)){
+                            var tmp = items[i].innerHTML;
+                            items[i].innerHTML = items[j].innerHTML;
+                            items[j].innerHTML = tmp;
+                        }
+                    })(items[j])
+                }
+            })(items[i])
+        }
+        addToggle();
+    });
+};
+itemToday = function () {
+    var today = year+'.'+month+'.'+day;
+    var endToday = $('#endToday');
+    endToday.innerHTML = "<img src=\"img/warn.png\" id=\"warning\"/>\n" +
+        "            ToDo Items Which End Toddy" + " <div id=\"toDayItem\">\n" +
+        "            </div>";
+    var toDayItem = $('#toDayItem');
+    var items = $All('.todo-item');
+    Array.prototype.forEach.call(items,function (item) {
+        if(today === item.childNodes.item(5).innerHTML){
+            toDayItem.innerHTML =toDayItem.innerHTML+item.childNodes.item(3).innerHTML+"<br/>";
+        }
+    });
+};
+

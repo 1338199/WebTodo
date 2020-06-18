@@ -10,7 +10,7 @@ body{
     text-align: center;
     font-family: cursive;
 }
-#title{
+#pagetitle{
     font-weight: bold;
 }
 #avatar{
@@ -48,7 +48,7 @@ body{
     margin: auto;
     background: white;
     border-top-left-radius: 45px;
-    height: 515px;
+    height: 840px;
 }
 
 .input-todo,
@@ -122,7 +122,7 @@ body{
     color:#f2f2f2;
     cursor: pointer;
     padding: 3px 8px 3px 8px;
-    font-size:20px;
+    font-size:15px;
     font-family: monospace;
     font-weight:bold;
     border-radius:10px;
@@ -247,4 +247,30 @@ span {
 }
 .not-show{
     display: none;
+}
+#sort{
+    background: cornflowerblue;
+    text-decoration:none;
+    color:#f2f2f2;
+    cursor: pointer;
+    padding: 3px 8px 3px 8px;
+    font-size:15px;
+    font-family: monospace;
+    font-weight:bold;
+    border-radius:10px;
+}
+#warning{
+    width: 20px;
+    height: 20px;
+    background: none;
+}
+#toDayItem{
+    box-shadow: 0 -1px 0 cornflowerblue,
+    1px 1px 0 cornflowerblue,
+    -1px 0 0 cornflowerblue;
+    font-family: "Hannotate SC",serif;
+    width: 280px;
+    margin: 20px auto;
+    background: white;
+    color: black;
 }

@@ -1,9 +1,3 @@
-var $ = function (sel) {
-    return document.querySelector(sel);
-};
-var $All = function (sel) {
-    return document.querySelectorAll(sel);
-};
 var itemId = 0;
 var date = new Date();
 var year = date.getFullYear();
@@ -15,82 +9,73 @@ var hiddenNums;
 var calendarYear;
 var calendarMonth;
 
-
 window.onload = function init() {
-
-    //添加日历功能
-    addDate();
-    document.getElementById("next").onclick = function(){
-        date.setMonth(date.getMonth() + 1); //当点击下一个月时 对当前月进行加1;
-        addDate(); //重新执行渲染 获取去 改变后的 年月日 进行渲染;
-    };
-    document.getElementById("prev").onclick = function(){
-        date.setMonth(date.getMonth() - 1); //与下一月 同理
+    model.init(function () {
+        var data = model.data;
+        console.log(data);
+        //添加日历功能
         addDate();
-    };
+        document.getElementById("next").onclick = function(){
+            date.setMonth(date.getMonth() + 1); //当点击下一个月时 对当前月进行加1;
+            addDate(); //重新执行渲染 获取去 改变后的 年月日 进行渲染;
+        };
+        document.getElementById("prev").onclick = function(){
+            date.setMonth(date.getMonth() - 1); //与下一月 同理
+            addDate();
+        };
 
-    var time = $('#time');
-    time.innerHTML = year+'.'+month+'.'+day;
+        var time = $('#time');
+        time.innerHTML = year+'.'+month+'.'+day;
 
-    //点击添加按钮增加todo
-    var add = $('#add'); // todo
-    var today = year+'.'+month+'.'+day;
-    add.addEventListener('click', function(ev) {
-        var ddl = prompt("The item ends at(xxxx.x.x)",today);
-        var message =$('.input-todo');
-        if (message.value === '') {
-            alert('message is empty');
-            return;
-        }
-        addTodo(message.value,ddl);
-        message.value = '';
+        //点击添加按钮增加todo
+        var add = $('#add'); // todo
+        var today = year+'.'+month+'.'+day;
+        add.addEventListener('click', function(ev) {
+            var ddl = prompt("The item ends at(xxxx.x.x)",today);
+            var message =$('.input-todo');
+            if (message.value === '') {
+                alert('message is empty');
+                return;
+            }
+            data.msg = message.value;
+            // model.flush();
+            console.log('id',data.id);
+            var id = data.items.length;
+            data.items.push({msg:data.msg,dateStr:ddl,completed:false,id:id});
+            data.msg = '';
+            console.log('data',data);
+            update();
+
+
+            message.value = '';
+        });
+
+        //添加左滑显示删除键
+        addDelete();
+
+        //添加complete删除功能
+        clearComplete();
+
+        //添加过滤功能
+        filtersClick();
+
+        //添加sort功能
+        sortInteract();
+
+        //update
+        update();
+
+        //添加toggleAll
+        toggleAll(data);
     });
 
-    //添加左滑显示删除键
-    addDelete();
-
-    //toggle-all按钮
-    var toggleAll = $('#check1');
-    toggleAll.addEventListener('click',function (ev) {
-        var items = $All('.todo-item');
-        if(leftNum > 0){
-
-            Array.prototype.forEach.call(items,function (item) {
-                if(!item.classList.contains('completed')){
-                    item.classList.add('completed');
-                    update();
-                }
-            })
-        }
-        else{
-            Array.prototype.forEach.call(items,function (item) {
-                if(item.classList.contains('completed')){
-                    item.classList.remove('completed');
-                    update();
-                }
-            })
-        }
-
-    });
-
-    //添加complete删除功能
-    clearComplete();
-
-    //添加过滤功能
-    filtersClick();
-
-    //添加sort功能
-    sortInteract();
-
-    //update
-    update();
 };
 
-function addTodo(message,ddl) {
+function addTodo(message,ddl,completed,id) {
     var todoList = $('.todo-list');
 
     var item = document.createElement('div');
-    var id = 'item' + itemId++;
+
     var classname = 'todo-item';
 
     item.setAttribute('id', id);
@@ -99,86 +84,76 @@ function addTodo(message,ddl) {
         "                    <span>"+message+"</span>\n" +
         "                    <span class=\"date\">"+ddl+"</span>";
 
+    if(completed){
+        item.classList.add('completed');
+    }
+
+
     //添加删除图标
     var leftslide = false;
     var rightsilde =false;
     addDeleteIcon(leftslide,rightsilde,item);
 
-
-
-    var label = item.querySelector('span');
-    label.addEventListener('click', function() {
-        label.classList.add('editing');
-
-        var edit = document.createElement('input');
-        var finished = false;
-        edit.setAttribute('type', 'text');
-        edit.setAttribute('class', 'edit');
-        edit.setAttribute('value', label.innerHTML);
-
-        function finish() {
-            if (finished) return;
-            finished = true;
-            item.removeChild(edit);
-            label.classList.remove('editing');
-        }
-
-        edit.addEventListener('blur', function() {
-            finish();
-        });
-
-        edit.addEventListener('keyup', function(ev) {
-            if (ev.keyCode === 13) {
-                if(this.value===""){
-                    alert("Can't be empty");
-                    return;
-                }
-                label.innerHTML = this.value;
-                finish();
-            }
-        });
-
-        item.appendChild(edit);
-        edit.focus();
-    }, false);
-
     todoList.insertBefore(item, todoList.firstChild);
 
-    addToggle();
+    addEdit();
 
-    //update
-    update();
+    return item;
 }
 
 function update() {
+    // 更新服务器的数据
+    model.flush();
 
+    // 获取全局变量model中的数据
+    let data = model.data;
 
     //计数item，并完成筛选功能
     var items = $All('.todo-item');
-    // var filter = $('.filters li a.selected').innerHTML;
-    var item, i;
-    var display;
+
     leftNum = 0;
-    //
-    for (i = 0; i < items.length; ++i) {
-        item = items[i];
-        if (!item.classList.contains('completed')) {
+    var todoList = $('.todo-list');
+    todoList.innerHTML = '';
+
+    data.items.forEach(function (itemData,index) {
+        var item = addTodo(itemData.msg,itemData.dateStr,itemData.completed,itemData.id);
+
+        //添加toggle功能
+        var toggle = item.querySelector(".point");
+        console.log(toggle);
+        toggle.addEventListener('click',function () {
+            if(!itemData.completed) {
+                itemData.completed = true;
+                item.classList.add('completed');
+                filterItems();
+                leftNum--;
+                model.flush();
+                //更新item数
+                updateCnt();
+            }else{
+                itemData.completed = false;
+                item.classList.remove('completed');
+                filterItems();
+                leftNum++;
+                model.flush();
+                updateCnt();
+                //更新toggleAll
+                var toggleAll = $('#check1');
+                toggleAll.checked = false;
+            }
+        });
+
+        if(!itemData.completed){
             leftNum++;
         }
-    }
+
+    });
+
     //在当前filter下更新显示
     filterItems();
 
-    var count = $('#todo-count');
-    if(leftNum>0) {
-        count.innerHTML = leftNum + " items left";
-    }
-    else{
-        count.innerHTML = leftNum + " item left";
-    }
-
-    //显示当前被隐藏的item数目
-    numberOfHidden();
+    //更新cnt
+    updateCnt();
 
     //更新日历显示
     addDate();
@@ -187,6 +162,16 @@ function update() {
     itemToday();
 
 }
+
+updateCnt = function(){
+    var count = $('#todo-count');
+    if(leftNum>0) {
+        count.innerHTML = leftNum + " items left";
+    }
+    else{
+        count.innerHTML = leftNum + " item left";
+    }
+};
 
 addDelete = function () {
     //滑动显示删除键
@@ -199,13 +184,12 @@ addDelete = function () {
 };
 
 addDeleteIcon = function (leftslide,rightsilde,item) {
-    var ifInsert = false;
     var x_start;
     var x_end;
     item.addEventListener('touchstart', function (event) {
         x_start = event.changedTouches[0].pageX;
     });
-    item.addEventListener('touchmove', function (ev) {
+    item.addEventListener('touchend', function (ev) {
         var parent = this.parentNode;
         x_end = ev.changedTouches[0].pageX;
         // 左右滑动
@@ -219,12 +203,14 @@ addDeleteIcon = function (leftslide,rightsilde,item) {
             item.style.display = "block";
             rightsilde = true;
         }
-        if (leftslide && !ifInsert) {
+        if (leftslide) {
             var trash = document.createElement('span');
             trash.style.cursor = "pointer";
             trash.innerHTML = "<img class=\"trash\" src=\"img/trash.jpg\"/>";
             trash.addEventListener('click',function (ev) {
+                console.log("click");
                 parent.removeChild(item);
+                deleteItemDataById(item.getAttribute("id"));
                 parent.removeChild(this);
                 update();
             });
@@ -233,37 +219,17 @@ addDeleteIcon = function (leftslide,rightsilde,item) {
             } else {
                 parent.insertBefore(trash, this.nextSibling);
             }
-            ifInsert = true;
             leftslide = false;
         }
-        if (rightsilde && this.nextSibling.nodeName === "SPAN") {
-            parent.removeChild(this.nextSibling);
-            ifInsert = false;
-            rightsilde = false;
+        if(this.nextSibling!==null) {
+            if (rightsilde && this.nextSibling.nodeName === "SPAN") {
+                parent.removeChild(this.nextSibling);
+                rightsilde = false;
+            }
         }
     });
 };
 
-addToggle = function () {
-    var toggles = $All('.point');
-    Array.prototype.forEach.call(toggles,function (toggle) {
-        var toggleParent = toggle.parentNode;
-        toggle.addEventListener('click',function () {
-            if(toggleParent.classList.contains("completed")){
-                toggleParent.classList.remove("completed");
-                update();
-                if(leftNum>0){
-                    var checkbox = $('#check1');
-                    checkbox.checked = false;
-                }
-            }
-            else {
-                toggleParent.classList.add("completed");
-                update();
-            }
-        })
-    });
-};
 
 clearComplete = function () {
     var clear = $('#clear-completed');
@@ -271,11 +237,15 @@ clearComplete = function () {
         var completes = $All('.completed');
         Array.prototype.forEach.call(completes,function (item){
             var parentComplete = item.parentNode;
-            if(item.nextSibling.nodeName==="SPAN"){
-                parentComplete.removeChild(item.nextSibling);
-            }
             parentComplete.removeChild(item);
+            deleteItemDataById(item.getAttribute("id"));
+            if(item.nextSibling!==null) {
+                if (item.nextSibling.nodeName === "SPAN") {
+                    parentComplete.removeChild(item.nextSibling);
+                }
+            }
         });
+        update();
     })
 };
 
@@ -305,17 +275,23 @@ filterItems = function () {
                 &&!item.classList.contains('not-show')){
                 item.classList.add('not-show');
                 item.style.display = "none";
-                if(item.nextSibling.nodeName === 'SPAN'){
-                    item.nextSibling.classList.add('not-show');
+                if(item.nextSibling!==null){
+                    if(item.nextSibling.nodeName === 'SPAN'){
+                        item.nextSibling.classList.add('not-show');
+                    }
                 }
+
             }
             else if(!item.classList.contains('completed')
                 && item.classList.contains('not-show')){
                 item.classList.remove('not-show');
                 item.style.display = "inline-block";
-                if(item.nextSibling.nodeName === 'SPAN'){
-                    item.nextSibling.classList.remove('not-show');
+                if(item.nextSibling!==null){
+                    if(item.nextSibling.nodeName === 'SPAN'){
+                        item.nextSibling.classList.remove('not-show');
+                    }
                 }
+
             }
         })
     }else if(whichSelected.firstChild.nodeValue === "All"){
@@ -324,8 +300,10 @@ filterItems = function () {
             if(item.classList.contains('not-show')){
                 item.classList.remove('not-show');
                 item.style.display = "inline-block";
-                if(item.nextSibling.nodeName === 'SPAN'){
-                    item.nextSibling.classList.remove('not-show');
+                if(item.nextSibling!==null){
+                    if(item.nextSibling.nodeName === 'SPAN'){
+                        item.nextSibling.classList.remove('not-show');
+                    }
                 }
             }
         })
@@ -336,19 +314,26 @@ filterItems = function () {
                 && !item.classList.contains('not-show')){
                 item.classList.add('not-show');
                 item.style.display = "none";
-                if(item.nextSibling.nodeName === 'SPAN'){
-                    item.nextSibling.classList.add('not-show');
+                if(item.nextSibling!==null){
+                    if(item.nextSibling.nodeName === 'SPAN'){
+                        item.nextSibling.classList.add('not-show');
+                    }
                 }
+
             }
             else if(item.classList.contains('completed') && item.classList.contains('not-show')){
                 item.classList.remove('not-show');
                 item.style.display = "inline-block";
-                if(item.nextSibling.nodeName === 'SPAN'){
-                    item.nextSibling.classList.remove('not-show');
+                if(item.nextSibling!==null){
+                    if(item.nextSibling.nodeName === 'SPAN'){
+                        item.nextSibling.classList.remove('not-show');
+                    }
                 }
+
             }
         })
     }
+    numberOfHidden();
 };
 
 numberOfHidden =function () {
@@ -449,7 +434,7 @@ sortInteract = function () {
                 }
             })(items[i])
         }
-        addToggle();
+        addEdit();
     });
 };
 itemToday = function () {
@@ -466,4 +451,88 @@ itemToday = function () {
         }
     });
 };
+addEdit = function () {
+ var items = $All('.todo-item');
+ console.log(items);
+ Array.prototype.forEach.call(items,function (item) {
+     var label = item.querySelector('span');
+     // console.log(label);
+     label.addEventListener('click', function() {
+         label.classList.add('editing');
 
+         var edit = document.createElement('input');
+         var finished = false;
+         edit.setAttribute('type', 'text');
+         edit.setAttribute('class', 'edit');
+         edit.setAttribute('value', label.innerHTML);
+
+         function finish() {
+             if (finished) return;
+             finished = true;
+             item.removeChild(edit);
+             label.classList.remove('editing');
+         }
+
+         edit.addEventListener('blur', function() {
+             finish();
+         });
+
+         edit.addEventListener('keyup', function(ev) {
+             if (ev.keyCode === 13) {
+                 if(this.value===""){
+                     alert("Can't be empty");
+                     return;
+                 }
+                 label.innerHTML = this.value;
+                 modifyItemData(item.getAttribute("id"),this.value);
+                 finish();
+             }
+         });
+
+         item.appendChild(edit);
+         edit.focus();
+     }, false);
+ })
+};
+toggleAll = function () {
+    model.flush();
+    //更新toggleAll
+    var data = model.data;
+    console.log(data);
+    var toggleAll = $('#check1');
+    toggleAll.addEventListener('click',function (ev) {
+        var items = $All('.todo-item');
+        console.log('click');
+        if(leftNum > 0){
+            data.items.forEach(function (itemData) {
+                if(!itemData.completed) {
+                    itemData.completed = true;
+                    leftNum--;
+                }
+            });
+            items.forEach(function (item) {
+                if(!item.classList.contains('completed')) {
+                    item.classList.add('completed');
+                    filterItems();
+                }
+            });
+            updateCnt();
+        }
+        else{
+            data.items.forEach(function (itemData) {
+                if(itemData.completed) {
+                    itemData.completed = false;
+                    leftNum++;
+                }
+            });
+            items.forEach(function (item) {
+                if(item.classList.contains('completed')) {
+                    item.classList.remove('completed');
+                    filterItems();
+                }
+            });
+            updateCnt();
+        }
+
+    });
+};

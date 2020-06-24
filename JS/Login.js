@@ -7,6 +7,7 @@ window.onload = function () {
                 var username = $('#username').value;
                 var pass1 = $('#pass1').value;
                 var valid = false;
+                var wrongpass = false;
                 var userID = 1;
                 if (username === '' || pass1 === '' ) {
                     alert("Username or password can't be empty");
@@ -16,10 +17,18 @@ window.onload = function () {
                     if(user.name === username){
                         userID = user.userId;
                         valid = true;
+                        if(user.pass !== pass1){
+                            wrongpass = true;
+                        }
+
                     }
                 });
                 if(!valid){
                     alert("Invalid User Name");
+                    return;
+                }
+                if(wrongpass){
+                    alert("wrong password");
                     return;
                 }
                 window.localStorage.username = username;

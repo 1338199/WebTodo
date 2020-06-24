@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ab0e4b1-ad94-4c5b-9942-57dbf938735a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/JS/Login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JS/tools.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSS/Calendar.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/Calendar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSS/Register.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/Register.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CSS/ToDoMVC.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSS/ToDoMVC.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/ToDoMVC.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/ToDoMVC.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/model.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/provider-ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/provider-ajax.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JS/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/JS/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JS/utils.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Login.html" beforeDir="false" afterPath="$PROJECT_DIR$/Login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/register.html" afterDir="false" />
@@ -113,7 +109,7 @@
       <workItem from="1592060154156" duration="5041000" />
       <workItem from="1592067896170" duration="43000" />
       <workItem from="1592098018145" duration="70775000" />
-      <workItem from="1592662237184" duration="42864000" />
+      <workItem from="1592662237184" duration="45983000" />
     </task>
     <servers />
   </component>
@@ -132,22 +128,22 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="458" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1592737905766" />
-    <state width="1419" height="109" key="GridCell.Tab.0.bottom" timestamp="1593008800671">
+    <state width="1419" height="109" key="GridCell.Tab.0.bottom" timestamp="1593011230742">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="109" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1593008800671" />
-    <state width="1419" height="109" key="GridCell.Tab.0.center" timestamp="1593008800670">
+    <state width="1419" height="109" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1593011230742" />
+    <state width="1419" height="109" key="GridCell.Tab.0.center" timestamp="1593011230741">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="109" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1593008800670" />
-    <state width="1419" height="109" key="GridCell.Tab.0.left" timestamp="1593008800670">
+    <state width="1419" height="109" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1593011230741" />
+    <state width="1419" height="109" key="GridCell.Tab.0.left" timestamp="1593011230740">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="109" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1593008800670" />
-    <state width="1419" height="109" key="GridCell.Tab.0.right" timestamp="1593008800671">
+    <state width="1419" height="109" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1593011230740" />
+    <state width="1419" height="109" key="GridCell.Tab.0.right" timestamp="1593011230742">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="109" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1593008800671" />
+    <state width="1419" height="109" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1593011230742" />
     <state width="1419" height="311" key="GridCell.Tab.1.bottom" timestamp="1593008607089">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -211,16 +207,6 @@
     <state x="385" y="196" width="670" height="58" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1592549760668" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/JS/utils.js</url>
-          <line>58</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="JavascriptDebugType">
         <watch expression="model.data" language="JavaScript" />

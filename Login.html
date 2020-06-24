@@ -4,17 +4,14 @@
     <meta charset="UTF-8">
     <title>Login</title>
     <link href="CSS/Register.css" rel="stylesheet" type="text/css">
-    <script src="JS/Register.js"></script>
-    <script src="JS/ajax.js"></script>
-    <script src="JS/provider-ajax.js"></script>
-    <script src="JS/model.js"></script>
 </head>
 <body>
 <div id="registerIcon">
-    <img  src="img/registerIcon.png">
+    <a href="register.html" style="cursor: pointer"><img  src="img/registerIcon.png" alt="icon"></a>
 </div>
 <br/>
 <div id="welcomeInfo">
+    You can Click icon to register page.<br/><br/>
     Let's Plan Your Work Now!
 </div>
 <div class="register">
@@ -29,7 +26,13 @@
             <input id="pass1" class="spnormal" type="password">
     </div>
     <br/>
-    <a id="sort">Login</a>
+    <a class="btn">Login</a>
 </div>
+
+<script src="JS/utils.js"></script>
+<script src="JS/model.js"></script>
+<script src="JS/ajax.js"></script>
+<script src="JS/provider-ajax.js"></script>
+<script src="JS/Login.js"></script>
 </body>
 </html>

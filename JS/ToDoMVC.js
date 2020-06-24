@@ -1,4 +1,3 @@
-var itemId = 0;
 var date = new Date();
 var year = date.getFullYear();
 var month = date.getMonth()+1;
@@ -11,6 +10,19 @@ var calendarMonth;
 
 window.onload = function init() {
     model.init(function () {
+
+        //根据登录用户名设定pagetitle
+        var pagetile = $('#pagetitle');
+        pagetile.innerHTML = window.localStorage.username + "'s ToDo";
+
+        //绑定登出功能
+        var logout = $('#avatar');
+        logout.addEventListener('click',function (ev) {
+            window.localStorage.username = null;
+            window.localStorage.userId = null;
+            window.location.href = "Login.html";
+        });
+
         var data = model.data;
         console.log(data);
         //添加日历功能
@@ -27,7 +39,7 @@ window.onload = function init() {
         var time = $('#time');
         time.innerHTML = year+'.'+month+'.'+day;
 
-        //点击添加按钮增加todo
+        //为添加按钮绑定添加事件
         var add = $('#add'); // todo
         var today = year+'.'+month+'.'+day;
         add.addEventListener('click', function(ev) {
@@ -37,11 +49,12 @@ window.onload = function init() {
                 alert('message is empty');
                 return;
             }
+            ddl = ValidDDl(ddl,today);
             data.msg = message.value;
             // model.flush();
             console.log('id',data.id);
             var id = data.items.length;
-            data.items.push({msg:data.msg,dateStr:ddl,completed:false,id:id});
+            data.items.push({msg:data.msg,dateStr:ddl,completed:false,id:id,userId:window.localStorage.userId});
             data.msg = '';
             console.log('data',data);
             update();
@@ -116,37 +129,38 @@ function update() {
     todoList.innerHTML = '';
 
     data.items.forEach(function (itemData,index) {
-        var item = addTodo(itemData.msg,itemData.dateStr,itemData.completed,itemData.id);
+        if(itemData.userId === window.localStorage.userId){
+            var item = addTodo(itemData.msg,itemData.dateStr,itemData.completed,itemData.id);
 
-        //添加toggle功能
-        var toggle = item.querySelector(".point");
-        console.log(toggle);
-        toggle.addEventListener('click',function () {
-            if(!itemData.completed) {
-                itemData.completed = true;
-                item.classList.add('completed');
-                filterItems();
-                leftNum--;
-                model.flush();
-                //更新item数
-                updateCnt();
-            }else{
-                itemData.completed = false;
-                item.classList.remove('completed');
-                filterItems();
+            //添加toggle功能
+            var toggle = item.querySelector(".point");
+            console.log(toggle);
+            toggle.addEventListener('click',function () {
+                if(!itemData.completed) {
+                    itemData.completed = true;
+                    item.classList.add('completed');
+                    filterItems();
+                    leftNum--;
+                    model.flush();
+                    //更新item数
+                    updateCnt();
+                }else{
+                    itemData.completed = false;
+                    item.classList.remove('completed');
+                    filterItems();
+                    leftNum++;
+                    model.flush();
+                    updateCnt();
+                    //更新toggleAll
+                    var toggleAll = $('#check1');
+                    toggleAll.checked = false;
+                }
+            });
+
+            if(!itemData.completed){
                 leftNum++;
-                model.flush();
-                updateCnt();
-                //更新toggleAll
-                var toggleAll = $('#check1');
-                toggleAll.checked = false;
             }
-        });
-
-        if(!itemData.completed){
-            leftNum++;
         }
-
     });
 
     //在当前filter下更新显示
@@ -198,7 +212,7 @@ addDeleteIcon = function (leftslide,rightsilde,item) {
             item.style.display = "inline-block";
             leftslide = true;
         }
-        if (x_start - x_end < 10) {
+        if (x_start - x_end < -10) {
             item.style.width = "100%";
             item.style.display = "block";
             rightsilde = true;

@@ -1,7 +1,7 @@
 (function() {
     let model = window.model;
     let Ajax = window.Ajax;
-    let KEYS = ['items', 'msg', 'filter'];
+    let KEYS = ['users', 'items', 'msg', 'filter'];
     let URL = 'http://127.0.0.1:3476';
     let MSG = 'Start server by `node examples/data/server.js` on project root';
     Object.assign(model, {
@@ -12,6 +12,7 @@
                     KEYS.forEach(function(key) {
                         if (key in data) model.data[key] = data[key];
                     });
+                    console.log(model.data);
                     if (callback) callback();
                 },
                 onFailure: function() {

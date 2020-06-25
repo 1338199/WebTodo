@@ -20,7 +20,7 @@ window.onload = function init() {
         logout.addEventListener('click',function (ev) {
             window.localStorage.username = null;
             window.localStorage.userId = null;
-            window.location.href = "Login.html";
+            window.location.href = "login.html";
         });
 
         var data = model.data;

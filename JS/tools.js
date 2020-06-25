@@ -30,6 +30,9 @@ function modifyItemData(modifyId, content) {
  */
 function ValidDDl(ddl,today) {
     var DA = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if(ddl === null||ddl === ''){
+        return today;
+    }
     var arr = ddl.split('.');
     if(arr.length < 3){
         return today;

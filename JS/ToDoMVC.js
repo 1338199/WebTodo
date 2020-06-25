@@ -8,6 +8,7 @@ var hiddenNums;
 var calendarYear;
 var calendarMonth;
 
+//初始化
 window.onload = function init() {
     model.init(function () {
 
@@ -36,6 +37,7 @@ window.onload = function init() {
             addDate();
         };
 
+        //显示当前日期
         var time = $('#time');
         time.innerHTML = year+'.'+month+'.'+day;
 
@@ -84,6 +86,7 @@ window.onload = function init() {
 
 };
 
+//添加事项
 function addTodo(message,ddl,completed,id) {
     var todoList = $('.todo-list');
 
@@ -109,11 +112,15 @@ function addTodo(message,ddl,completed,id) {
 
     todoList.insertBefore(item, todoList.firstChild);
 
+
+    //添加编辑功能
     addEdit();
 
     return item;
 }
 
+
+//update函数
 function update() {
     // 更新服务器的数据
     model.flush();
@@ -124,11 +131,13 @@ function update() {
     //计数item，并完成筛选功能
     var items = $All('.todo-item');
 
+    //按得到的后端data生成事项
     leftNum = 0;
     var todoList = $('.todo-list');
     todoList.innerHTML = '';
 
     data.items.forEach(function (itemData,index) {
+        //是否是该用户的事项
         if(itemData.userId === window.localStorage.userId){
             var item = addTodo(itemData.msg,itemData.dateStr,itemData.completed,itemData.id);
 
@@ -156,7 +165,7 @@ function update() {
                     toggleAll.checked = false;
                 }
             });
-
+            //统计有多少未完成的事项
             if(!itemData.completed){
                 leftNum++;
             }
@@ -177,6 +186,7 @@ function update() {
 
 }
 
+//显示最新的剩余事项数
 updateCnt = function(){
     var count = $('#todo-count');
     if(leftNum>0) {
@@ -187,6 +197,7 @@ updateCnt = function(){
     }
 };
 
+//给所有事项添加删除事件
 addDelete = function () {
     //滑动显示删除键
     var items = $All('.todo-item');
@@ -196,7 +207,7 @@ addDelete = function () {
         addDeleteIcon(leftslide,rightsilde,item);
     });
 };
-
+//给指定事项添加左滑删除按钮，并给删除按钮绑定删除事件
 addDeleteIcon = function (leftslide,rightsilde,item) {
     var x_start;
     var x_end;
@@ -228,6 +239,7 @@ addDeleteIcon = function (leftslide,rightsilde,item) {
                 parent.removeChild(this);
                 update();
             });
+            //插入生成的删除图标
             if (parent.lastChild === this) {
                 parent.appendChild(trash);
             } else {
@@ -235,6 +247,7 @@ addDeleteIcon = function (leftslide,rightsilde,item) {
             }
             leftslide = false;
         }
+        //右滑时取消删除图标
         if(this.nextSibling!==null) {
             if (rightsilde && this.nextSibling.nodeName === "SPAN") {
                 parent.removeChild(this.nextSibling);
@@ -244,7 +257,7 @@ addDeleteIcon = function (leftslide,rightsilde,item) {
     });
 };
 
-
+//给clearcomplete按钮绑定删除事件
 clearComplete = function () {
     var clear = $('#clear-completed');
     clear.addEventListener('click',function (ev) {
@@ -263,6 +276,7 @@ clearComplete = function () {
     })
 };
 
+//给三个过滤按钮绑定事件
 filtersClick = function () {
     var filters = $All('.filters li a');
     whichSelected = filters[0];
@@ -280,7 +294,7 @@ filtersClick = function () {
 
 };
 
-//item和其后的deleteIcon(如果有)都要过滤
+//根据当前的过滤选项显示事项
 filterItems = function () {
     if(whichSelected.firstChild.nodeValue === "Active"){
         var items1 = $All('.todo-item');
@@ -350,6 +364,7 @@ filterItems = function () {
     numberOfHidden();
 };
 
+//统计有多少事项被过滤了
 numberOfHidden =function () {
     hiddenNums = 0;
     var items = $All('.todo-item');
@@ -362,6 +377,7 @@ numberOfHidden =function () {
     hidden.innerHTML = "Hidden: "+hiddenNums;
 };
 
+//打印日历
 addDate = function(){
     document.getElementById('date').innerHTML = "";
 
@@ -417,6 +433,8 @@ addDate = function(){
         });
     })
 };
+
+//两个事项的排序依据
 compare = function (date1,date2) {
     var dateArr1 = date1.split('.');
     var dateArr2 = date2.split('.');
@@ -431,6 +449,8 @@ compare = function (date1,date2) {
         return false;
     }
 };
+
+//所有事项冒泡排序
 sortInteract = function () {
     var sortClick = $('#sort');
     sortClick.addEventListener('click',function (ev) {
@@ -451,6 +471,8 @@ sortInteract = function () {
         addEdit();
     });
 };
+
+//显示今日截止的事项
 itemToday = function () {
     var today = year+'.'+month+'.'+day;
     var endToday = $('#endToday');
@@ -465,6 +487,8 @@ itemToday = function () {
         }
     });
 };
+
+//添加编辑功能
 addEdit = function () {
  var items = $All('.todo-item');
  console.log(items);
@@ -508,6 +532,8 @@ addEdit = function () {
      }, false);
  })
 };
+
+//给toggleAll按钮添加全部完成/取消功能
 toggleAll = function () {
     model.flush();
     //更新toggleAll
@@ -519,10 +545,13 @@ toggleAll = function () {
         console.log('click');
         if(leftNum > 0){
             data.items.forEach(function (itemData) {
-                if(!itemData.completed) {
-                    itemData.completed = true;
-                    leftNum--;
+                if(itemData.userId === window.localStorage.userId){
+                    if(!itemData.completed) {
+                        itemData.completed = true;
+                        leftNum--;
+                    }
                 }
+
             });
             items.forEach(function (item) {
                 if(!item.classList.contains('completed')) {
@@ -534,9 +563,11 @@ toggleAll = function () {
         }
         else{
             data.items.forEach(function (itemData) {
-                if(itemData.completed) {
-                    itemData.completed = false;
-                    leftNum++;
+                if(itemData.userId === window.localStorage.userId){
+                    if(itemData.completed) {
+                        itemData.completed = false;
+                        leftNum++;
+                    }
                 }
             });
             items.forEach(function (item) {

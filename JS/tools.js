@@ -62,6 +62,3 @@ function isLoopYear(theYear) {
     return (new Date(theYear, 1, 29).getDate() === 29);
 }
 
-function GetItemsById(userId) {
-
-}

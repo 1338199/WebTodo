@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1" name="viewport"/>
+    <link href="css/toDoMVC.css" type="text/css" rel="stylesheet">
+    <link href="css/calendar.css" type="text/css" rel="stylesheet">
+    <title>ToDoMVC</title>
+</head>
+<body>
+<div class="todomvc">
+    <header class="header">
+        <br/>
+        <img id="avatar" src="img/avatar.jpeg"/>
+        <h1 id="pagetitle"></h1>
+        <h1 id="info">Click avatar to log out</h1>
+        <!-- Add New Item -->
+        <a class="welcome" href="index.html">Welcome</a><br/>
+        <h2 id="todo-count"></h2>
+        <h2 id="time"></h2>
+    </header>
+    <section class="main">
+        <span class="toggole-all">
+             <input type="checkbox" class="Checkbox" id="check1">
+             <label for="check1"></label>
+        </span>
+        <input class="input-todo" type="text" placeholder="What are you going to do?" autofocus>
+        <a id="add"><img id="addIcon" src="img/add.png"/></a>
+        <br/>
+
+        <div class="list">
+
+            <ul class="filters">
+                <li id="hiddenNum"></li>
+                <li><a class="selected" style="cursor:pointer;">All</a></li>
+                <li><a class="" style="cursor:pointer;">Active</a></li>
+                <li><a class="" style="cursor:pointer;">Completed</a></li>
+            </ul>
+            <!-- Show List -->
+            <div class="todo-list">
+            </div>
+        </div>
+        <footer class="footer">
+            <br/>
+            <a id="clear-completed">Clear Completed</a>
+            <a id="sort">Sort Items By DDL</a>
+        </footer>
+        <div id="data">
+            <p id="datecontrol">
+                <span id="prev">Last Month</span>
+                <span id="nian">2020</span>
+                <span id="next">Next Month</span>
+            </p>
+            <span id="yue">June</span>
+            <ul id="title">
+                <li>Sun.</li>
+                <li>Mon.</li>
+                <li>Tues.</li>
+                <li>Wed.</li>
+                <li>Thur.</li>
+                <li>Fri.</li>
+                <li>Sat.</li>
+            </ul>
+            <ul id="date">
+            </ul>
+        </div>
+        <div id="dateFilter">
+        </div>
+
+        <div id="endToday">
+
+        </div>
+
+    </section>
+</div>
+<script src="js/tools.js"></script>
+<script src="js/model.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/provider-ajax.js"></script>
+<script src="js/toDoMVC.js" ></script>
+
+
+</body>
+</html>

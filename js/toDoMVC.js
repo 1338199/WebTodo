@@ -455,14 +455,18 @@ sortInteract = function () {
     var sortClick = $('#sort');
     sortClick.addEventListener('click',function (ev) {
         var items = $All('.todo-item');
-        for(var i = 0;i <items.length-1;i++){
+        console.log(items);
+        for(var i = 0;i <items.length;i++){
             (function(item) {
-                for(var j = 1; j<items.length;j++){
+                for(var j = 0; j<items.length-i-1;j++){
                     (function (item2) {
-                        if(!compare(item.childNodes.item(5).innerHTML,item2.childNodes.item(5).innerHTML)){
-                            var tmp = items[i].innerHTML;
-                            items[i].innerHTML = items[j].innerHTML;
-                            items[j].innerHTML = tmp;
+                        if(!compare(items[j].childNodes.item(5).innerHTML,items[j+1].childNodes.item(5).innerHTML)){
+                            var tmp = items[j].innerHTML;
+                            var tmplist = items[j].classList.value;
+                            items[j].innerHTML = items[j+1].innerHTML;
+                            items[j].classList.value = items[j+1].classList.value;
+                            items[j+1].innerHTML = tmp;
+                            items[j+1].classList.value = tmplist;
                         }
                     })(items[j])
                 }

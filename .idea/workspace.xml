@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5ab0e4b1-ad94-4c5b-9942-57dbf938735a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/toDoMVC.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/toDoMVC.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,40 +52,40 @@
       <recent name="$PROJECT_DIR$/CSS" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.server.js">
-    <configuration name="Login.html?_ijt=se1hkg698r76ksdvhbtv0i0l7n" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://192.168.1.102:3333/ToDoMVC/Login.html?_ijt=se1hkg698r76ksdvhbtv0i0l7n">
+  <component name="RunManager" selected="JavaScript Debug.register.html?_ijt=e0hqn26q7fp9u3nso5i4e7rr4v">
+    <configuration name="register.html?_ijt=e0hqn26q7fp9u3nso5i4e7rr4v" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://192.168.1.102:3333/ToDoMVC/register.html?_ijt=e0hqn26q7fp9u3nso5i4e7rr4v">
       <method v="2" />
     </configuration>
-    <configuration name="index.html?_ijt=7msja1h53trg6nfsbp0c6rnq17" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://192.168.1.102:3333/ToDoMVC/index.html?_ijt=7msja1h53trg6nfsbp0c6rnq17">
+    <configuration name="register.html?_ijt=g1kj8a0ma3ea8tmp55jo4egpcc" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://192.168.1.102:3333/ToDoMVC/register.html?_ijt=g1kj8a0ma3ea8tmp55jo4egpcc">
       <method v="2" />
     </configuration>
-    <configuration name="index.html?_ijt=9sdo2mkuas6h01ibgmc12igjr7" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://192.168.1.102:3333/ToDoMVC/index.html?_ijt=9sdo2mkuas6h01ibgmc12igjr7">
+    <configuration name="register.html?_ijt=nnqspnv3jqdubsb8lb1l02l1th" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://192.168.1.102:3333/ToDoMVC/register.html?_ijt=nnqspnv3jqdubsb8lb1l02l1th">
       <method v="2" />
     </configuration>
-    <configuration name="index.html?_ijt=se1hkg698r76ksdvhbtv0i0l7n" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://192.168.1.102:3333/ToDoMVC/index.html?_ijt=se1hkg698r76ksdvhbtv0i0l7n">
+    <configuration name="register.html?_ijt=trf4regq234r2cotlkgcn5g4eo" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://192.168.1.102:3333/ToDoMVC/register.html?_ijt=trf4regq234r2cotlkgcn5g4eo">
+      <method v="2" />
+    </configuration>
+    <configuration name="register.html?_ijt=un981o3bb0vamu5bq7gt14gegl" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://192.168.1.102:3333/ToDoMVC/register.html?_ijt=un981o3bb0vamu5bq7gt14gegl">
       <method v="2" />
     </configuration>
     <configuration name="Unnamed" type="NodeJSConfigurationType" nameIsGenerated="true" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
-    <configuration name="server.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/JS/server.js" working-dir="$PROJECT_DIR$/JS">
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="JavaScript Debug.Login.html?_ijt=se1hkg698r76ksdvhbtv0i0l7n" />
-      <item itemvalue="JavaScript Debug.index.html?_ijt=se1hkg698r76ksdvhbtv0i0l7n" />
-      <item itemvalue="JavaScript Debug.index.html?_ijt=9sdo2mkuas6h01ibgmc12igjr7" />
-      <item itemvalue="JavaScript Debug.index.html?_ijt=7msja1h53trg6nfsbp0c6rnq17" />
       <item itemvalue="Node.js.Unnamed" />
-      <item itemvalue="Node.js.server.js" />
+      <item itemvalue="JavaScript Debug.register.html?_ijt=trf4regq234r2cotlkgcn5g4eo" />
+      <item itemvalue="JavaScript Debug.register.html?_ijt=g1kj8a0ma3ea8tmp55jo4egpcc" />
+      <item itemvalue="JavaScript Debug.register.html?_ijt=nnqspnv3jqdubsb8lb1l02l1th" />
+      <item itemvalue="JavaScript Debug.register.html?_ijt=un981o3bb0vamu5bq7gt14gegl" />
+      <item itemvalue="JavaScript Debug.register.html?_ijt=e0hqn26q7fp9u3nso5i4e7rr4v" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.server.js" />
-        <item itemvalue="JavaScript Debug.index.html?_ijt=7msja1h53trg6nfsbp0c6rnq17" />
-        <item itemvalue="JavaScript Debug.index.html?_ijt=9sdo2mkuas6h01ibgmc12igjr7" />
-        <item itemvalue="JavaScript Debug.index.html?_ijt=se1hkg698r76ksdvhbtv0i0l7n" />
-        <item itemvalue="JavaScript Debug.Login.html?_ijt=se1hkg698r76ksdvhbtv0i0l7n" />
+        <item itemvalue="JavaScript Debug.register.html?_ijt=e0hqn26q7fp9u3nso5i4e7rr4v" />
+        <item itemvalue="JavaScript Debug.register.html?_ijt=un981o3bb0vamu5bq7gt14gegl" />
+        <item itemvalue="JavaScript Debug.register.html?_ijt=nnqspnv3jqdubsb8lb1l02l1th" />
+        <item itemvalue="JavaScript Debug.register.html?_ijt=g1kj8a0ma3ea8tmp55jo4egpcc" />
+        <item itemvalue="JavaScript Debug.register.html?_ijt=trf4regq234r2cotlkgcn5g4eo" />
       </list>
     </recent_temporary>
   </component>
@@ -104,6 +104,7 @@
       <workItem from="1592098018145" duration="70775000" />
       <workItem from="1592662237184" duration="46135000" />
       <workItem from="1593051635688" duration="4401000" />
+      <workItem from="1593153576673" duration="3368000" />
     </task>
     <servers />
   </component>
@@ -126,74 +127,74 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="303" y="52" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1593080523575" />
-    <state width="1419" height="311" key="GridCell.Tab.0.bottom" timestamp="1593015641947">
+    <state width="1419" height="311" key="GridCell.Tab.0.bottom" timestamp="1593166705155">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1593015641947" />
-    <state width="1419" height="311" key="GridCell.Tab.0.center" timestamp="1593015641946">
+    <state width="1419" height="311" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1593166705155" />
+    <state width="1419" height="311" key="GridCell.Tab.0.center" timestamp="1593166705154">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1593015641946" />
-    <state width="1419" height="311" key="GridCell.Tab.0.left" timestamp="1593015641946">
+    <state width="1419" height="311" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1593166705154" />
+    <state width="1419" height="311" key="GridCell.Tab.0.left" timestamp="1593166705154">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1593015641946" />
-    <state width="1419" height="311" key="GridCell.Tab.0.right" timestamp="1593015641947">
+    <state width="1419" height="311" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1593166705154" />
+    <state width="1419" height="311" key="GridCell.Tab.0.right" timestamp="1593166705155">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1593015641947" />
-    <state width="1419" height="311" key="GridCell.Tab.1.bottom" timestamp="1593015641949">
+    <state width="1419" height="311" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1593166705155" />
+    <state width="1419" height="311" key="GridCell.Tab.1.bottom" timestamp="1593166733134">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1593015641949" />
-    <state width="1419" height="311" key="GridCell.Tab.1.bottom/0.23.1440.833@0.23.1440.833" timestamp="1592968325966" />
-    <state width="1419" height="311" key="GridCell.Tab.1.center" timestamp="1593015641948">
+    <state width="1419" height="311" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1593166733134" />
+    <state width="1419" height="311" key="GridCell.Tab.1.bottom/0.23.1440.833@0.23.1440.833" timestamp="1593166035090" />
+    <state width="1419" height="311" key="GridCell.Tab.1.center" timestamp="1593166733130">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1593015641948" />
-    <state width="1419" height="311" key="GridCell.Tab.1.center/0.23.1440.833@0.23.1440.833" timestamp="1592968325950" />
-    <state width="1419" height="311" key="GridCell.Tab.1.left" timestamp="1593015641948">
+    <state width="1419" height="311" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1593166733130" />
+    <state width="1419" height="311" key="GridCell.Tab.1.center/0.23.1440.833@0.23.1440.833" timestamp="1593166035083" />
+    <state width="1419" height="311" key="GridCell.Tab.1.left" timestamp="1593166733129">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1593015641948" />
-    <state width="1419" height="311" key="GridCell.Tab.1.left/0.23.1440.833@0.23.1440.833" timestamp="1592968325942" />
-    <state width="1419" height="311" key="GridCell.Tab.1.right" timestamp="1593015641948">
+    <state width="1419" height="311" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1593166733129" />
+    <state width="1419" height="311" key="GridCell.Tab.1.left/0.23.1440.833@0.23.1440.833" timestamp="1593166035080" />
+    <state width="1419" height="311" key="GridCell.Tab.1.right" timestamp="1593166733131">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1593015641948" />
-    <state width="1419" height="311" key="GridCell.Tab.1.right/0.23.1440.833@0.23.1440.833" timestamp="1592968325961" />
-    <state width="1419" height="311" key="GridCell.Tab.2.bottom" timestamp="1593015641950">
+    <state width="1419" height="311" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1593166733131" />
+    <state width="1419" height="311" key="GridCell.Tab.1.right/0.23.1440.833@0.23.1440.833" timestamp="1593166035087" />
+    <state width="1419" height="311" key="GridCell.Tab.2.bottom" timestamp="1593166704859">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.2.bottom/0.0.1440.900@0.0.1440.900" timestamp="1593015641950" />
-    <state width="1419" height="311" key="GridCell.Tab.2.center" timestamp="1593015641950">
+    <state width="1419" height="311" key="GridCell.Tab.2.bottom/0.0.1440.900@0.0.1440.900" timestamp="1593166704859" />
+    <state width="1419" height="311" key="GridCell.Tab.2.center" timestamp="1593166704857">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.2.center/0.0.1440.900@0.0.1440.900" timestamp="1593015641950" />
-    <state width="1419" height="311" key="GridCell.Tab.2.left" timestamp="1593015641949">
+    <state width="1419" height="311" key="GridCell.Tab.2.center/0.0.1440.900@0.0.1440.900" timestamp="1593166704857" />
+    <state width="1419" height="311" key="GridCell.Tab.2.left" timestamp="1593166704856">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.2.left/0.0.1440.900@0.0.1440.900" timestamp="1593015641949" />
-    <state width="1419" height="311" key="GridCell.Tab.2.right" timestamp="1593015641950">
+    <state width="1419" height="311" key="GridCell.Tab.2.left/0.0.1440.900@0.0.1440.900" timestamp="1593166704856" />
+    <state width="1419" height="311" key="GridCell.Tab.2.right" timestamp="1593166704858">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.2.right/0.0.1440.900@0.0.1440.900" timestamp="1593015641950" />
-    <state width="1419" height="311" key="GridCell.Tab.3.bottom" timestamp="1593015641952">
+    <state width="1419" height="311" key="GridCell.Tab.2.right/0.0.1440.900@0.0.1440.900" timestamp="1593166704858" />
+    <state width="1419" height="311" key="GridCell.Tab.3.bottom" timestamp="1593166704861">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.3.bottom/0.0.1440.900@0.0.1440.900" timestamp="1593015641952" />
-    <state width="1419" height="311" key="GridCell.Tab.3.center" timestamp="1593015641951">
+    <state width="1419" height="311" key="GridCell.Tab.3.bottom/0.0.1440.900@0.0.1440.900" timestamp="1593166704861" />
+    <state width="1419" height="311" key="GridCell.Tab.3.center" timestamp="1593166704860">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.3.center/0.0.1440.900@0.0.1440.900" timestamp="1593015641951" />
-    <state width="1419" height="311" key="GridCell.Tab.3.left" timestamp="1593015641951">
+    <state width="1419" height="311" key="GridCell.Tab.3.center/0.0.1440.900@0.0.1440.900" timestamp="1593166704860" />
+    <state width="1419" height="311" key="GridCell.Tab.3.left" timestamp="1593166704859">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.3.left/0.0.1440.900@0.0.1440.900" timestamp="1593015641951" />
-    <state width="1419" height="311" key="GridCell.Tab.3.right" timestamp="1593015641951">
+    <state width="1419" height="311" key="GridCell.Tab.3.left/0.0.1440.900@0.0.1440.900" timestamp="1593166704859" />
+    <state width="1419" height="311" key="GridCell.Tab.3.right" timestamp="1593166704860">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1419" height="311" key="GridCell.Tab.3.right/0.0.1440.900@0.0.1440.900" timestamp="1593015641951" />
+    <state width="1419" height="311" key="GridCell.Tab.3.right/0.0.1440.900@0.0.1440.900" timestamp="1593166704860" />
     <state x="221" y="89" key="SettingsEditor" timestamp="1592662384819">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -205,11 +206,25 @@
     <state x="385" y="196" width="670" height="58" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1592549760668" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/js/toDoMVC.js</url>
+          <line>463</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="JavascriptDebugType">
         <watch expression="model.data" language="JavaScript" />
         <watch expression="model" language="JavaScript" />
         <watch expression="user.name" language="JavaScript" />
+        <watch expression="items[i].childNodes.item(5).innerHTML" language="JavaScript" />
+        <watch expression="items[j].childNodes.item(5).innerHTML" language="JavaScript" />
+        <watch expression="items[j+1].classList" language="JavaScript" />
+        <watch expression="tmplist" language="JavaScript" />
       </configuration>
     </watches-manager>
   </component>
